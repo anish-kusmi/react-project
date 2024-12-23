@@ -1,0 +1,68 @@
+.heading{
+  font-size: larger;
+}
+.card{
+  align-items: center;
+  
+}
+.carousel-inner{
+
+ height:50%;
+ width:100%;
+  
+}
+.login-img{
+  width:100%;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  /* transform: translateY(-50%); */
+  cursor:pointer;
+}
+
+.eye-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content:left;
+  align-items:start;
+  height: 500px; /* Adjust height as needed */
+}
+
+.loading-container img {
+  width: 150px; /* Adjust size as needed */
+  height: 200px;
+}
