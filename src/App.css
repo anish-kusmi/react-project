@@ -66,3 +66,8 @@ input {
   width: 150px; /* Adjust size as needed */
   height: 200px;
 }
+
+.text-centre
+{
+  text-align: center;
+}

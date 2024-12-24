@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = (props) => {
   return (
@@ -31,7 +32,13 @@ const Navbar = (props) => {
         <Link className="nav-link" to='/profile'>Profile</Link>
         </li>
 
-        
+        <li className="nav-item position-relative">
+        <Link className="nav-link" to='/profile'><FaShoppingCart />  <span className="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
+       0
+      <span className="visually-hidden">unread messages</span>
+      </span></Link>
+        </li>
+
       </ul>
       
         <button className="btn btn-success"onClick={props} type="submit">{props.btnText}</button>

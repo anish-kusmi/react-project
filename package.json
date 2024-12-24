@@ -1,6 +1,6 @@
 {
   "name": "learning-react",
-  "homepage": "https://anish-kusmi.github.io/react-project",
+  "homepage": "https://anish-kusmi.github.io/react-project/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,13 +9,14 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "gh-pages": "^6.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
     "react-router-dom": "^7.0.2",
     "react-slider": "^2.0.6"
   },
