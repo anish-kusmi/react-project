@@ -60,8 +60,9 @@
 //useReducer bhanne auta react ko hook ho jasma state ra dispatch method  hunxa card-reducer bhanne auta function banaunu parne hunxa ra initial state 10 aaunu parxa
 
 
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import productContext from './ProductContext'
+import { cartReducer } from './Reducer';
 
 
 const ProductState = (props) => {
@@ -89,15 +90,15 @@ const ProductState = (props) => {
 },
 ]
   const[product, setProduct]=useState(products);
-  // const [state, dispatch]= useReducer(cartReduccer,
-  //   {
-  //   products: product,
-  //   cart:[]
-  //    }
-  //   )
+  const [state, dispatch]= useReducer(cartReducer,
+    {
+      products: product,
+      cart:[]
+       }
+  );
 
   return (
-    <productContext.Provider value={{product}}>
+    <productContext.Provider value={{product, state, dispatch}}>
       {props.children}
     </productContext.Provider>
   )

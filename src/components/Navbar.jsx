@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaShoppingCart } from "react-icons/fa";
+import productContext from '../context/ProductContext'
 
 const Navbar = (props) => {
+  const context = useContext(productContext);
+  const 
+  {state:{cart},} = context;
   return (
     <div>
       <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -34,7 +38,7 @@ const Navbar = (props) => {
 
         <li className="nav-item position-relative">
         <Link className="nav-link" to='/profile'><FaShoppingCart />  <span className="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
-       0
+       {cart.length}
       <span className="visually-hidden">unread messages</span>
       </span></Link>
         </li>

@@ -64,8 +64,9 @@ import Fruit from '../assets/apple.jpg';
 
 const Profile = () => {
  const context = useContext(productContext);
- const {product} = context;
+ const {state:{cart},dispatch,product} = context;
  console.log('this is Products',product);
+//  console.log('this is state',state);
  
 
  useEffect(()=>{
@@ -79,7 +80,7 @@ const Profile = () => {
       <div className="row">
         {product.map((item) => {
           return (
-            <div className="col-md-3 mb-4" key={item.url}>
+            <div className="col-md-3 mb-4" key={item.id}>
               <div className="card">
                 <img
                   src={Fruit}
@@ -89,12 +90,24 @@ const Profile = () => {
                 <div className="card-body">
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">{item.description}</p>
-                  <a
-                    href={"#"}
-                    className="btn btn-warning"
-                  >
-                    Add To Cart
-                  </a>
+                  <p className="card-text">Rs.{item.price}</p>
+                  
+               { cart && cart.some((p)=> p.id=== item.id) ?  (
+               <button className="btn btn-danger"
+               onClick={()=>{
+                dispatch({
+                  type: 'REMOVE_FROM_CART',
+                  payload: item
+                })
+               }}>Remove From Cart</button>
+                  ): (
+                    <button className="btn btn-primary"
+                    onClick={()=>{
+                     dispatch({
+                       type: 'ADD_TO_CART',
+                       payload: item
+                     })
+                    }}>Add To Cart</button>)}
                 </div>
               </div>
             </div>
