@@ -70,24 +70,31 @@ const ProductState = (props) => {
     {
     id:1,
     title:"Apple",
-    Description:"Apple from mustang",
+    description:"Apple from mustang",
     price: 100,
-    Instock: 5
+    instock: 4
 },
 {
     id:2,
     title:"Mango",
-    Description:"Mango from kalaiya",
-    price: 50,
-    Instock: 4
+    description:"Mango from kalaiya",
+    price: 200,
+    instock: 5
 },
 {
     id:3,
     title:"Orange",
-    Description:"Orange from gorkha",
-    price: 100,
-    Instock: 5
+    description:"Orange from gorkha",
+    price: 300,
+    instock: 6
 },
+{
+  id:4,
+  title:"Banana",
+  description:"Banana from gorkha",
+  price: 400,
+  instock: 7
+}
 ]
   const[product, setProduct]=useState(products);
   const [state, dispatch]= useReducer(cartReducer,

@@ -11,6 +11,9 @@ import Profile from './components/Profile'
 import UserList from './components/UserList'
 import User from './components/User'
 import ProductState from './context/ProductState'
+import CartItems from './components/Cartitems'
+
+
 // Bactics `
 
 function App() {
@@ -55,6 +58,7 @@ function App() {
       <Route path='/profile' element={<Profile />}/>
       <Route path='/user/:userId/:userName' element={<User />}/>
       <Route path='/user' element={<UserList />}/>
+      <Route path='/cartItems' element={<CartItems />}/>
     
     </Routes>
    
