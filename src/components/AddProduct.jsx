@@ -35,6 +35,7 @@ const AddProduct = () => {
           </label>
           <input
             type="text"
+            name="description"
             value={product.description}
             onChange={handleChange}
             className="form-control"
@@ -47,6 +48,7 @@ const AddProduct = () => {
           </label>
           <input
             type="number"
+            name="product"
             value={product.price}
             onChange={handleChange}
             className="form-control"
@@ -59,6 +61,7 @@ const AddProduct = () => {
           </label>
           <input
             type="Number"
+            name="instock"
             value={product.instock}
             onChange={handleChange}
             className="form-control"
