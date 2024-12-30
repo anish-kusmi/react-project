@@ -65,7 +65,7 @@ import EditProductModal from "./EditProductModal";
 
 const Profile = () => {
  const context = useContext(productContext);
- const {state:{cart},dispatch,product} = context;
+ const {state:{cart}, dispatch, product, allProduct, } = context;
  console.log('this is Products',product);
 
  const [menuVisible, setMenuVisible]=useState(false);
@@ -101,6 +101,7 @@ const handleDelete = async (id) => {
 
  useEffect(()=>{
 //  fetchData();
+  allProduct()
  },[])
 
  return (
