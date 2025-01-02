@@ -113,19 +113,58 @@ const ProductState = (props) => {
     })
     let data = await response.json();
     console.log(data);
-    setProduct(data);
-    
+    setProduct(data); 
+  };
+  const editProduct=async(selectedProduct,updateData)=>{
+    console.log("editing product",selectedProduct);
+    const {title, description,price,instock}=updateData
+    try {
+      const response= await fetch(`http://localhost:5174/api/product/${selectedProduct}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type":"application/json",
+          "auth-token": localStorage.getItem('token'),
+        },
+        body:json.stringify({title, description,instock,price}),
+      }
+    );
+    if(!response.ok){
+      throw new Error('failed to update');
+    }
+    const json= await response.json()
+    console.log(json);
+    allProduct()
 
-    
+    } catch (error) {
+
+      throw new Error('failed to update');
+    }
+  }
+  const deleteProduct=async (id)=>{
+    try {
+      const response=await fetch(`http://localhost:5174/api/product/${id}`,{
+        method:'DELETE',
+        headers:{
+          "content-type":"application/json",
+          "auth-token":localStorage.getItem("token"),
+        },
+      });
+      if(response.ok){
+        console.log("product deleted successfully");
+      }
+      else{
+        console.error("failed to delete ");
+      }
+    } catch (error) {
+      console.error("failed to delete ");
+    }
   }
 
   return (
-    <productContext.Provider value={{product, state, dispatch, allProduct}}>
+    <productContext.Provider value={{product, state, dispatch, allProduct,editProduct,deleteProduct}}>
       {props.children}
     </productContext.Provider>
   )
 }
-
-
 export default ProductState
 

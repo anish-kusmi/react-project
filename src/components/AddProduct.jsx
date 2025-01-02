@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -6,17 +7,56 @@ const AddProduct = () => {
     description: "",
     price: "",
     instock: "",
+    image:""
   });
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    if (e.target.type==='file') {
+        setProduct({...product,[e.target.name]:e.target.files[0]});
+        console.log(e.target.files[0]);
+        
+    } else {
+        setProduct({ ...product, [e.target.name]: e.target.value });
+    }
+  
   };
+  const handleSubmit=async(e)=>{
+    e.preventDefault(); //prevent default form submition behaviour
+   const formData= new formData()
+   formData.append('title',product.title);
+   formData.append('description',product.description);
+   formData.append('price',product.price);
+   formData.append('instock',product.instock);
+   if(product.image){
+    formData.append('myfile',product.image);
+   }
+   try {
+    const response= await axios.post(''.formData,{
+        headers:{
+            'auth-token': localStorage.getItem("token")
+        }
+    })
+    console.log(response.data);
+    setProduct({
+        title: "",
+        description: "",
+        price: "",
+        instock: "",
+        image:""
+
+    })
+    
+   } catch (error) {
+    console.error(error);
+    
+   }
+  }
   return (
     <div className="container mt-4">
       <h4>Add your product here</h4>
 
-      <form>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Title
           </label>
           <input
@@ -30,7 +70,7 @@ const AddProduct = () => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Description
           </label>
           <input
@@ -43,12 +83,12 @@ const AddProduct = () => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Price
           </label>
           <input
             type="number"
-            name="product"
+            name="price"
             value={product.price}
             onChange={handleChange}
             className="form-control"
@@ -56,7 +96,7 @@ const AddProduct = () => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Instock
           </label>
           <input
@@ -66,6 +106,19 @@ const AddProduct = () => {
             onChange={handleChange}
             className="form-control"
             id="exampleInputPassword1"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            Image
+          </label>
+          <input
+            name="image"
+            type="file"  
+            multiple
+            onChange={handleChange}
+            className="form-control"
+            id="image"
           />
         </div>
 

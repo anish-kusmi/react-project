@@ -60,7 +60,7 @@ function App() {
       <Route path='/user/:userId/:userName' element={<User />}/>
       <Route path='/user' element={<UserList />}/>
       <Route path='/cartItems' element={<CartItems />}/>
-      <Route path='/addproduct' element={<AddProduct />}/>
+      <Route path='/react-project/addproduct' element={<AddProduct />}/>
     
     </Routes>
    
