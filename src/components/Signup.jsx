@@ -17,7 +17,7 @@ e.preventDefault()
 console.log("form is submitted");
 
 const{ name, email, password}= credential
-const response = await fetch('',{
+const response = await fetch('http://localhost:5000/api/auth/createuser',{
   method:'POST',
   headers:{
    'content-Type':'application/json'

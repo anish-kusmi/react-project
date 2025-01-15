@@ -88,3 +88,27 @@ input {
   margin-left: 20px;
   
 }
+.heroclass{
+  height: 600px;
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-image {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.product-image-container:hover .product-image {
+  transform: scale(1.1); /* This zooms the image in */
+}
+
+.product-image-container:hover {
+  cursor: pointer;
+}
+
+

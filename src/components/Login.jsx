@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Login1 from '../assets/login.jpg';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,8 +8,7 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const [showPassword, setShowPassword] = useState(false); // yo useState chai  toggle password visibility ko laagi create gareko 
-
+  const [showPassword, setShowPassword] = useState(false); // toggle password visibility
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,22 +16,31 @@ const Login = () => {
     console.log('Form is submitted');
 
     const { email, password } = credential;
-    const response = await fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
 
-    const json = await response.json();
-    console.log('This is response data', json);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (json.success) {
-      localStorage.setItem('token', json.authToken);
-      navigate('/');
-    } else {
-      alert('Invalid credentials');
+      const json = await response.json();
+      console.log('Response data:', json);
+
+      // Ensure that the backend is returning a valid authToken
+      if (json.authToken) {
+        // Save token to localStorage
+        localStorage.setItem('token', json.authToken);
+        console.log('Token saved in localStorage:', json.authToken);
+        navigate('/'); 
+      } else {
+        alert(json.error || 'Invalid credentials or server issue.');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('Something went wrong! Please try again later.');
     }
   };
 
@@ -70,7 +79,7 @@ const Login = () => {
                 </label>
                 <div style={{ position: 'relative' }}>
                   <input
-                    type={showPassword ? 'text' : 'password'}//ternary operator use gareko 
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={credential.password}
                     onChange={handleChange}

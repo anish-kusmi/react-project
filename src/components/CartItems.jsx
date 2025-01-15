@@ -12,10 +12,10 @@ const CartItems = () => {
         <div className="productContainer-cart col-md-8">
             <ul className="list-group"> {cart && cart.map((item)=>{
                 return(
-                    <li className="list-group-item">key={item.id}
+                    <li className="list-group-item">key={item._id}
                      <div className='row'>
                         <div className='col-md-2'>
-                            <img src={Fruit} height={50} width={50} alt= "product"/>
+                            <img src={`http://localhost:5000/uploads/${item.images}`} height={50} width={50} alt= "product"/>
                         </div>
                         <div className='col-md-2'>
                            <h4>{item.title}</h4>
@@ -29,7 +29,7 @@ const CartItems = () => {
                             dispatch({
                             type:"CHANGE_CART_QTY",
                             payload:{
-                                id:item.id,
+                                _id:item._id,
                                 qty: e.target.value
                             }
                         })
